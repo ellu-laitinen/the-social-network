@@ -2,7 +2,9 @@ import React from 'react';
 
 const Logo = () => {
     return (
-        <a></a>
+        <div>
+            logo here
+        </div>
     )
 }
 
