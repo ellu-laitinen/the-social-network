@@ -4,7 +4,7 @@ import Notifications from './Notifications'
 
 const Feeds = () => {
     return (
-        <div>
+        <div className="container">
             <h1>Feed</h1>
             <AllPosts />
             <Notifications />
