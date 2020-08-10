@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom'
 import Login from '../Auth/Login'
 import Register from '../Auth/Register'
 import Logo from '../Auth/Logo'
@@ -12,14 +13,16 @@ const NavBar = () => {
     return (
         <nav>
             <div className="nav-wrapper">
-                <a href="#" class="brand-logo"> <Logo /> </a>
+                <Link to="/" class="brand-logo"> <Logo /> </Link>
                 <ul id="nav-mobile" className="right">
 
-                    <li> <a href="/register"> <Register /> </a></li>
-                    <li> <a href="login"> <Login /> </a></li>
-                    <li> <a href="#"> <Logout /> </a></li>
-                    <li> <a href="#">  <NonRegisteredUsersLinks /> </a></li>
-                    <li> <a href="#">  <RegisteredUsersLinks /> </a></li>
+                    <li> <Link to="/register"> Register </Link></li>
+                    <li> <Link to="/login"> Login </Link></li>
+                    <li> <Link to="/new-post"> New Post </Link></li>
+                    <li> <Link to="/non-registuser"> Non registered user links </Link></li>
+                    <li> <Link to="/regist-user"> Registered user links </Link></li>
+                    <li> <Link to="/"> Logout </Link></li>
+
                 </ul>
             </div>
         </nav>
