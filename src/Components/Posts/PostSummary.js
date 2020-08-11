@@ -3,9 +3,9 @@ import PostDetails from '../Posts/PostDetails'
 
 const PostSummary = () => {
     return (
-        <div>
-            new post has been added!
-            <PostDetails />
+        <div className="card post">
+            <div className="card-title">Post title</div>
+            <div className="card-content">Lorem</div>
         </div>
     );
 }

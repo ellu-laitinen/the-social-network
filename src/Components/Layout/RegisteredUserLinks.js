@@ -1,9 +1,10 @@
 import React from 'react';
+import { NavLink } from 'react-router-dom'
 
 const RegisteredUserLinks = () => {
     return (
         <div>
-            registered user links
+            <li> <NavLink to="/"> Logout </NavLink></li>
         </div>
     );
 }
