@@ -1,5 +1,5 @@
 import React from 'react';
-import Login from '../Auth/Login'
+
 import { NavLink } from 'react-router-dom'
 
 const NonRegisteredUserLinks = () => {

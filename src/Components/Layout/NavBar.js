@@ -9,19 +9,17 @@ import NonRegisteredUserLinks from './NonRegisteredUserLinks'
 
 const NavBar = () => {
     return (
-        <nav>
-            <div className="nav-wrapper">
-                <div className="container">
-                    <Logo />
-                    <ul id="nav-mobile" className="right hide-on-med-and-down">
+        <nav className="nav-wrapper">
 
-                        <RegisteredUserLinks />
-                        <NonRegisteredUserLinks />
+            <div className="container">
+                <Logo />
+                <ul className="right hide-on-med-and-down">
+                    <NonRegisteredUserLinks />
+                    <RegisteredUserLinks />
 
-
-                    </ul>
-                </div>
+                </ul>
             </div>
+
         </nav>
 
 

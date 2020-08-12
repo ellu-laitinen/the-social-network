@@ -1,50 +1,28 @@
-import React from 'react';
 
-const Register = () => {
-    return (
-        <div className="container">
-            <div className="row">
-                <h1> Register here </h1>
-                <form className="col s12">
-                    <div className="row">
-                        <div className="input-field col s8">
-                            <input type="text" name="firstname" id="firstname"></input>
-                            <label htmlFor="firstname">First name:</label>
-                        </div>
-                    </div>
-                    <div className="row">
-                        <div className="input-field col s8">
-                            <input type="text" name="lastname" id="lastname"></input>
-                            <label htmlFor="lastname">Lastname:</label>
-                        </div>
+import React from 'react'
 
-                    </div>
-                    <div className="row">
-                        <div className="input-field col s8">
-                            <label htmlFor="username">Username:</label>
-                            <input type="text" name="username" id="username"></input>
-                        </div>
-                    </div>
-                    <div className="row">
-                        <div className="input-field col s8">
-                            <label htmlFor="password">Password:</label>
-                            <input type="text" name="password" id="password"></input>
-                        </div>
-                    </div>
-                    <div className="row">
-                        <div className="input-field col s8">
-                            <label htmlFor="email">Email:</label>
-                            <input type="email" name="email" id="email"></input>
-                        </div>
-                    </div>
-
-
-
-                </form>
-                <button className="waves-effect waves-light btn">Register</button>
+const Register = () => (
+    <div className="container">
+        <form>
+            <div className="input-field">
+                <input id="firstname" type="text" className="validate" />
+                <label for="firstname">First Name:</label>
             </div>
-        </div>
-    );
-}
+            <div className="input-field">
+                <input id="lastname" type="text" className="validate" />
+                <label for="lastname">Last Name:</label>
+            </div>
+            <div className="input-field">
+                <input id="email" type="text" className="validate" />
+                <label for="email">Email:</label>
+            </div>
+            <div className="input-field">
+                <input id="password" type="password" className="validate" />
+                <label for="password">Password</label>
+            </div>
+            <button className="btn waves-effect waves-light" type="submit" name="action">Register</button>
+        </form>
+    </div>
+)
 
 export default Register;
