@@ -10,7 +10,7 @@ import Login from './Components/Auth/Login'
 import PostDetails from './Components/Posts/PostDetails';
 import NewPost from './Components/Posts/NewPost';
 import Firebase from 'firebase'
-import { FIREBASE_CONFIG as firebaseConfig } from './config/constants'
+import { FIREBASE_CONFIG as firebaseConfig } from './config/firebaseConfig'
 
 
 // Initialize Firebase
@@ -21,7 +21,7 @@ const database = Firebase.firestore();
 
 database.collection('posts').get()
   .then(resp => {
-    console.log(resp.docs[2].data())
+    console.log(resp.docs[0].data())
     console.log(resp.docs[1].data().title)
     console.log(resp)
   })
