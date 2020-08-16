@@ -13,7 +13,7 @@ const NavBar = () => {
 
             <div className="container">
                 <Logo />
-                <ul className="right hide-on-med-and-down">
+                <ul className="right">
                     <NonRegisteredUserLinks />
                     <RegisteredUserLinks />
 

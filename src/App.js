@@ -38,7 +38,7 @@ function App() {
 
           <Switch >
             <Route path="/" exact component={Feeds} />
-            <Route path="/logout" exact component={Logout} />
+            <Route path="/logout" component={Logout} />
             <Route path="/register" component={Register} />
             <Route path="/login" component={Login} />
             <Route path="/create" component={NewPost} />

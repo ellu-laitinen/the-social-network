@@ -1,16 +1,17 @@
 import React from 'react'
+import Firebase from 'firebase'
+
+/* const Auth = Firebase.auth(); */
 
 class Login extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            email: null,
-            password: null
-        };
 
-        /*       this.handleSubmission = this.handleSubmission.bind(this);
-              this.handleChange = this.handleChange.bind(this); */
-    }
+    state = {
+        email: null,
+        password: null
+    };
+
+    /*       this.handleSubmission = this.handleSubmission.bind(this);
+          this.handleChange = this.handleChange.bind(this); */
 
     handleChange = (e) => {
         this.setState({
@@ -20,11 +21,16 @@ class Login extends React.Component {
 
     handleSubmission = (e) => {
         e.preventDefault();
+
+        Firebase.auth().signInWithEmailAndPassword(
+            this.state.email,
+            this.state.password
+        ).then(() => {
+            console.log('success')
+        }).catch(err => {
+            console.log('error' + err)
+        })
         console.log(this.state);
-    }
-
-    componentDidMount() {
-
     }
 
     render() {
