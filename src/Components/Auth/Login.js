@@ -1,19 +1,22 @@
-import React from 'react'
-import Firebase from 'firebase'
+import React from 'react';
+import Firebase from 'firebase';
 
-/* const Auth = Firebase.auth(); */
+class LogIn extends React.Component {
+    constructor(props) {
+        super(props);
 
-class Login extends React.Component {
+        this.state = {
+            email: null,
+            password: null,
+            auth: null
+        };
 
-    state = {
-        email: null,
-        password: null
-    };
-
-    /*       this.handleSubmission = this.handleSubmission.bind(this);
-          this.handleChange = this.handleChange.bind(this); */
+        this.handleSubmission = this.handleSubmission.bind(this);
+        this.handleChange = this.handleChange.bind(this);
+    }
 
     handleChange = (e) => {
+        console.log(this);
         this.setState({
             [e.target.id]: e.target.value
         })
@@ -25,12 +28,11 @@ class Login extends React.Component {
         Firebase.auth().signInWithEmailAndPassword(
             this.state.email,
             this.state.password
-        ).then(() => {
-            console.log('success')
+        ).then(resp => {
+            console.log('Login success');
         }).catch(err => {
-            console.log('error' + err)
-        })
-        console.log(this.state);
+            console.log('Login fail: ' + err);
+        });
     }
 
     render() {
@@ -52,4 +54,4 @@ class Login extends React.Component {
     }
 }
 
-export default Login;
+export default LogIn;

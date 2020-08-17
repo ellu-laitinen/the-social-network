@@ -2,12 +2,13 @@ import React from 'react'
 import Firebase from 'firebase';
 
 class Register extends React.Component {
-    state = {
-        firstname: null,
-        lastname: null,
-        email: null,
-        password: null
-    };
+    constructor(props) {
+        super(props);
+        this.state = {};
+        this.handleChange = this.handleChange.bind(this)
+        this.handleSubmission = this.handleSubmission.bind(this)
+    }
+
 
     handleChange = (e) => {
         this.setState({
@@ -20,17 +21,18 @@ class Register extends React.Component {
         Firebase.auth().createUserWithEmailAndPassword(
             this.state.email,
             this.state.password
-        ).then(() => {
-            console.log('user created')
+        ).then(resp => {
+            Firebase.firestore().collection('users').doc(resp.user.uid).set({
+                firstname: this.state.firstname,
+                lastname: this.state.lastname,
+                email: this.state.email
+            }).then(
+                console.log('user created'))
         }).catch(err => {
             console.log('error' + err)
         })
         console.log(this.state)
     }
-
-
-
-
 
     render() {
         return (

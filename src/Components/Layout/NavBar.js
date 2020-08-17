@@ -7,24 +7,31 @@ import NonRegisteredUserLinks from './NonRegisteredUserLinks'
 
 
 
-const NavBar = () => {
-    return (
-        <nav className="nav-wrapper">
+class NavBar extends React.Component {
+    render() {
+        return (
+            <nav className="nav-wrapper">
 
-            <div className="container">
-                <Logo />
-                <ul className="right">
-                    <NonRegisteredUserLinks />
-                    <RegisteredUserLinks />
-
-                </ul>
-            </div>
-
-        </nav>
+                <div className="container">
+                    <Logo />
+                    {this.props.uid ?
+                        <ul className="right">
+                            <RegisteredUserLinks />
+                        </ul> :
+                        <ul className="right">
+                            <NonRegisteredUserLinks />
 
 
-    )
 
+                        </ul>
+                    }
+                </div>
+
+            </nav>
+
+
+        )
+    }
 }
 
 export default NavBar;

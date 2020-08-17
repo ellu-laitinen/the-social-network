@@ -1,11 +1,11 @@
 import React from 'react';
 import PostDetails from '../Posts/PostDetails'
 
-const PostSummary = () => {
+const PostSummary = (props) => {
     return (
         <div className="card post">
-            <div className="card-title">Post title</div>
-            <div className="card-content">Lorem blah</div>
+            <div className="card-title">{props.post.title}</div>
+            <div className="card-content">{props.post.content}</div>
         </div>
     );
 }

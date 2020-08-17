@@ -29,29 +29,56 @@ database.collection('posts').get()
     console.log(err)
   })
 
-function App() {
-  return (
-    <Router>
-      <div className="App">
-        <div className="container">
-          <NavBar />
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      uid: Firebase.auth().currentUser
+    }
+  }
+  render() {
+    Firebase.auth().onAuthStateChanged(user => {
+      if (user && this.state.uid === null) {
+        this.setState({
+          uid: user.uid
+        })
+      } else if (!user && this.state.uid !== null) {
+        this.setState({
+          uid: null
+        })
+      }
 
-          <Switch >
-            <Route path="/" exact component={Feeds} />
-            <Route path="/logout" component={Logout} />
-            <Route path="/register" component={Register} />
-            <Route path="/login" component={Login} />
-            <Route path="/create" component={NewPost} />
-            <Route path="/posts/:id" component={PostDetails} />
+    })
 
-          </Switch>
+    return (
+      <Router>
+        <div className="App">
+          <div className="container">
+            <NavBar uid={this.state.uid} />
+
+            <Switch >
+              <Route exact path="/" render={() => {
+                return <Feeds uid={this.state.uid} />
+              }}></Route>
+              <Route exact path="/logout" render={() => {
+                return <Logout uid={this.state.uid} />
+              }} />
+              <Route path="/register" component={Register} />
+              <Route path="/login" component={Login} />
+              <Route exact path="/create" render={() => {
+                return <NewPost uid={this.state.uid} />
+              }}></Route>
+              <Route path="/posts/:id" component={PostDetails} />
+
+            </Switch>
+          </div>
         </div>
-      </div>
 
-    </Router>
+      </Router>
 
 
-  );
+    );
+  }
 }
 
 export default App;

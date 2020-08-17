@@ -1,36 +1,63 @@
-import React from 'react';
+import React from 'react'
+import { Redirect } from 'react-router-dom';
+import Firebase from 'firebase';
 
-const NewPost = () => {
-    return (
-        <div className="container">
-            <div className="row">
-                <h1> New post </h1>
-                <form className="col s12">
-                    <div className="row">
-                        <div className="input-field col s8">
-                            <input type="text" name="firstname" id="firstname"></input>
-                            <label htmlFor="firstname">Title</label>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <form class="col s12">
-                            <div class="row">
-                                <div class="input-field col s12">
-                                    <textarea id="textarea1" class="materialize-textarea"></textarea>
-                                    <label for="textarea1">Textarea</label>
-                                </div>
+class NewPost extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            posted: false
+        };
+        this.handleChange = this.handleChange.bind(this);
+        this.handleSubmission = this.handleSubmission.bind(this);
+    }
+
+    handleChange = (e) => {
+        console.log(this);
+        this.setState({
+            [e.target.id]: e.target.value
+        })
+    }
+
+    handleSubmission = (e) => {
+        e.preventDefault();
+
+        Firebase.firestore().collection('posts').add({
+            title: this.state.postTitle,
+            content: this.state.postContent,
+            time: new Date(),
+            user: Firebase.auth().currentUser.uid
+        }).then(() => {
+            this.setState({
+                posted: true
+            })
+        })
+    }
+
+    render() {
+        return (
+            <div className="container">
+                {this.state.posted ? <Redirect to="/" /> : ''}
+                {
+                    !this.props.uid ?
+                        <Redirect to="/login" /> :
+                        <form onSubmit={this.handleSubmission}>
+                            <div className="input-field">
+                                <input onChange={this.handleChange} id="postTitle" type="text" className="validate" />
+                                <label htmlFor="postTitle">Title:</label>
                             </div>
+                            <div className="input-field">
+                                <textarea onChange={this.handleChange} id="postContent" className="materialize-textarea" data-length="500"></textarea>
+                                <label htmlFor="postContent">Content:</label>
+                            </div>
+
+                            <button className="btn waves-effect waves-light" type="submit" name="action">Submit</button>
                         </form>
-                    </div>
-
-
-
-
-                </form>
-                <button className="waves-effect waves-light btn">Create new post</button>
+                }
             </div>
-        </div>
-    );
+        )
+    }
 }
+
 
 export default NewPost;

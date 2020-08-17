@@ -1,16 +1,18 @@
 import React from 'react';
 import AllPosts from '../Posts/AllPosts'
+import { Redirect } from 'react-router-dom'
 
 
-const Feeds = () => {
-    return (
-        <div className="container">
-            <h1>Feed</h1>
-            <AllPosts />
+const Feeds = (props) => (
+    <div className="container">
+        {props.uid ? <AllPosts /> :
+            <Redirect to="/login" />}
+    </div >
 
 
-        </div>
-    );
-}
+
+);
+
 
 export default Feeds;
+
