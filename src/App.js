@@ -12,12 +12,11 @@ import NewPost from './Components/Posts/NewPost';
 import Firebase from 'firebase'
 import { FIREBASE_CONFIG as firebaseConfig } from './config/firebaseConfig'
 
-
 // Initialize Firebase
 Firebase.initializeApp(firebaseConfig);
 Firebase.analytics();
 
-const database = Firebase.firestore();
+/* const database = Firebase.firestore();
 
 database.collection('posts').get()
   .then(resp => {
@@ -27,16 +26,20 @@ database.collection('posts').get()
   })
   .catch(err => {
     console.log(err)
-  })
+  }) */
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      uid: Firebase.auth().currentUser
+      uid: null
     }
   }
-  render() {
+  componentDidMount = () => {
+    this.setState({
+      uid: Firebase.auth().currentUser ? Firebase.auth().currentUser.uid : null
+    });
+
     Firebase.auth().onAuthStateChanged(user => {
       if (user && this.state.uid === null) {
         this.setState({
@@ -48,8 +51,9 @@ class App extends React.Component {
         })
       }
 
-    })
-
+    });
+  }
+  render() {
     return (
       <Router>
         <div className="App">
@@ -81,4 +85,8 @@ class App extends React.Component {
   }
 }
 
+
+
 export default App;
+
+
