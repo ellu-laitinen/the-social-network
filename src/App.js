@@ -72,7 +72,9 @@ class App extends React.Component {
               <Route exact path="/create" render={() => {
                 return <NewPost uid={this.state.uid} />
               }}></Route>
-              <Route path="/posts/:id" component={PostDetails} />
+              <Route path="/posts/:id" render={() => {
+                return <PostDetails uid={this.state.uid} />
+              }}></Route>
 
             </Switch>
           </div>

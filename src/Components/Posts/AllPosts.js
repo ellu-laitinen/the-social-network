@@ -28,7 +28,7 @@ class AllPosts extends React.Component {
     render() {
         return (
             <div>
-                <button className="btn" onClick={() => this.props.removePosts()}>Remove all posts</button>
+                <button className="btn" onClick={() => this.props.removePosts(this.props.posts)}>Remove all posts</button>
                 {
                     this.state.posts ?
                         this.state.posts.map(post =>
