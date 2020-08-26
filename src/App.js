@@ -72,7 +72,7 @@ class App extends React.Component {
               <Route exact path="/create" render={() => {
                 return <NewPost uid={this.state.uid} />
               }}></Route>
-              <Route path="/posts/:id" render={() => {
+              <Route path="/posts/:postTitle" render={() => {
                 return <PostDetails uid={this.state.uid} />
               }}></Route>
 

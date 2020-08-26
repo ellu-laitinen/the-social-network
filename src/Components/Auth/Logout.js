@@ -1,34 +1,39 @@
 import React from 'react';
-import Firebase from 'firebase';
-import { Redirect } from 'react-router-dom'
+import { logOut } from '../../store/actions/authActions'
+import { connect } from 'react-redux';
+
 
 class Logout extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {};
-        this.logOut = this.logOut.bind(this)
-    }
-
-    logOut = () => {
-        Firebase.auth().signOut()
-            .then(() => {
-                if (!this.state.logOUt) {
-                    this.setState({
-                        logOut: true
-                    })
-                }
-                console.log('logout successful')
-            }).catch(err => {
-                console.log('error' + err)
-            });
-
+    componentDidMount = () => {
+        this.props.logOut();
     }
 
     render() {
         return (
-            <button onClick={this.logOut}>Logout</button>
-        );
+            <div>
+                {
+                    this.props.loginStatus ?
+                        <div>Logout fail</div> :
+                        <div>Logout succesful</div>
+                }
+            </div>
+        )
+
     }
 }
 
-export default Logout;
+const mapStateToProps = (state) => {
+    return {
+        loginStatus: !state.firebase.auth.isEmpty
+    }
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        logOut: () => {
+            dispatch(logOut());
+        }
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Logout);

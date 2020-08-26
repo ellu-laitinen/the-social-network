@@ -15,8 +15,8 @@ import { FIREBASE_CONFIG as firebaseConfig } from './config/firebaseConfig'
 import './index.css';
 import App from './App';
 
-
-const store = createStore(rootReducers,
+const store = createStore(
+  rootReducers,
   compose(
     applyMiddleware(thunk.withExtraArgument({ getFirestore, getFirebase })),
     reduxFirestore(firebase, firebaseConfig)
@@ -37,4 +37,3 @@ ReactDOM.render(
   </Provider>,
   document.getElementById('root')
 );
-
