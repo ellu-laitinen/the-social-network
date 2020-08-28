@@ -9,6 +9,7 @@ class AllPosts extends React.Component {
 
     componentDidMount = () => {
         this.props.getPosts();
+
     }
 
     render() {

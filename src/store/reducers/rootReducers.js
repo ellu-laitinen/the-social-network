@@ -35,6 +35,12 @@ const postReducer = (state = initialState, action) => {
                 ...state,
                 posts: action.resp
             }
+        case 'FETCHED_ONE_POST':
+            console.log('one post fetched')
+            return {
+                ...state,
+                posts: action.resp
+            }
 
         case 'CREATE_NEW_POST':
             console.log('new post created')

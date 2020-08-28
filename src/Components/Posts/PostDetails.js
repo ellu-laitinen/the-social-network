@@ -1,16 +1,20 @@
-/* import React from 'react';
+import React from 'react';
+import { connect } from 'react-redux'
 
-const PostDetails = (post) => {
-    return (
-        <div>
-            title: {post.title}
-        </div>
-    );
+class PostDetails extends React.Component {
+    render() {
+        return (
+            <div>
+                Post title: {this.props.title}
+            Post Content: {this.props.content}
+            </div>
+        );
+    }
 }
 
-export default PostDetails; */
+/* export default PostDetails; */
 
-import React from 'react';
+/* import React from 'react';
 import Firebase from 'firebase'
 import { connect } from 'react-redux'
 
@@ -47,17 +51,15 @@ class PostDetails extends React.Component {
             <div> {this.state.posts.map(post =>
                 <PostCard post={post.data()} key={post.id}></PostCard>)
             }
-
-
             </div>
         );
     }
 }
-
+*/
 const mapStateToProps = (state) => {
     return {
         posts: state.posts
     }
 }
 
-export default connect(mapStateToProps)(PostDetails); 
+export default connect(mapStateToProps)(PostDetails);  

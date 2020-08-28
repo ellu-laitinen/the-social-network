@@ -7,7 +7,7 @@ import Feeds from './Components/HomePage/Feeds'
 import Logout from './Components/Auth/Logout'
 import Register from './Components/Auth/Register'
 import Login from './Components/Auth/Login'
-import PostDetails from './Components/Posts/PostDetails';
+import PostCard from './Components/Posts/PostCard';
 import NewPost from './Components/Posts/NewPost';
 import Firebase from 'firebase'
 import { FIREBASE_CONFIG as firebaseConfig } from './config/firebaseConfig'
@@ -16,7 +16,7 @@ import { FIREBASE_CONFIG as firebaseConfig } from './config/firebaseConfig'
 Firebase.initializeApp(firebaseConfig);
 Firebase.analytics();
 
-/* const database = Firebase.firestore();
+const database = Firebase.firestore();
 
 database.collection('posts').get()
   .then(resp => {
@@ -26,7 +26,7 @@ database.collection('posts').get()
   })
   .catch(err => {
     console.log(err)
-  }) */
+  })
 
 class App extends React.Component {
   constructor(props) {
@@ -72,8 +72,8 @@ class App extends React.Component {
               <Route exact path="/create" render={() => {
                 return <NewPost uid={this.state.uid} />
               }}></Route>
-              <Route path="/posts/:postTitle" render={() => {
-                return <PostDetails uid={this.state.uid} />
+              <Route path="/post" render={() => {
+                return <PostCard uid={this.state.uid} title={this.props.title} />
               }}></Route>
 
             </Switch>
