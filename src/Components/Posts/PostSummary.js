@@ -1,6 +1,6 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom'
-import Firebase from 'firebase'
+import './PostSummary.css'
 /* import { getOnePost } from '../../store/actions/postActions'
  */import { connect } from 'react-redux';
 
